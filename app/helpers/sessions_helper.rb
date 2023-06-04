@@ -9,7 +9,14 @@ module SessionsHelper
     end
   end
 
+  # Logs in the given user.
   def logged_in
     !current_user.nil?
+  end
+
+# Logs out the current user.
+  def log_out
+    reset_session
+    @current_user = nil
   end
 end
