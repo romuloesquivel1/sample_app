@@ -7,9 +7,9 @@ class UsersLogin < ActionDispatch::IntegrationTest
   end
 end
 
-class InvalidPasswordTest <UsersLogin
+class InvalidPasswordTest < UsersLogin
 
-  test "login_path" do
+  test "login path" do
     get login_path
     assert_template 'sessions/new'
   end
@@ -30,7 +30,7 @@ class ValidLogin < UsersLogin
   def setup
     super
     post login_path, params: { session: { email:    @user.email,
-                               password: 'password' } }
+                                          password: 'password' } }
   end
 end
 
@@ -94,4 +94,3 @@ class RememberingTest <  UsersLogin
     assert cookies[:remember_token].blank?
   end
 end
-
