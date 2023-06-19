@@ -118,7 +118,7 @@ end
 class ExpiredTokenTest < ExpiredToken
 
   test "should redirect to the password-reset page" do
-    assert_redirected_to new_password_reset_path
+    assert_redirected_to new_password_reset_url
   end
 
   test "should include the word 'expired' on the password-reset page" do
