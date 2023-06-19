@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     redirect_to users_url, status: :see_other
   end
 
-private
+  private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, 
