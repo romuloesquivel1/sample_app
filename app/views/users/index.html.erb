@@ -1,10 +1,52 @@
-<% provide(:title, "All Users") %>
+<% provide(:title, 'All Users') %>
 <h1>All users</h1>
 
-<%= will_paginate %>
+<div class='row mt-2'>
+  <div class='col-md-2'>
+    <%= select_tag :per_page,
+      options_for_select([5,10,15,20,25,30,40,50], @per_page), 
+      class: 'form-control',
+      onchange: "if(this.value){window.location='?per_page='+this.value;}" %>
+  </div>
+  <div class='col-md-10'>
+    <%= will_paginate(class: 'custom-paging-users') %>
+  </div>
+</div>
 
-<ul class="users">
+<ul id='users-list' class='users my-2'>
   <%= render @users %>
 </ul>
 
-<%= will_paginate %>
+<div class='row'>
+  <div class='col-md-2'>
+    <%= select_tag(:per_page,
+      options_for_select([5,10,15,20,25,30,40,50], @per_page), 
+      class: 'form-control',
+      onchange: 'changePerPage.call(this);',
+      data: {
+        remote: true,
+        url: users_path,
+        method: 'get',
+      }) %>
+  </div>
+  <div class='col-md-10'>
+    <%= will_paginate(class: 'custom-paging-users') %>
+  </div>
+</div>
+
+<script type='text/javascript'>
+  function changePerPage() {
+    var url = `${this.dataset.url}?per_page=${this.value}`;
+    window.fetch(url, {
+      method: this.dataset.method,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      }
+    }).then(function(response) {
+      return response.text();
+    }).then(function(data) {
+      document.innerHTML = data;
+    });
+  }
+</script>

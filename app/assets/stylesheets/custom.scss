@@ -1,13 +1,4 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-/* mixins, variables, etc. */
-$gray-medium-light: #eaeaea;
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-}
+@import '_variables.scss';
 
 /* universal */
 
@@ -124,6 +115,7 @@ footer {
   float: left;
   width: 100%;
   margin-top: 45px;
+  margin-bottom: 45px;
 }
 
 /* sidebar */
@@ -201,7 +193,7 @@ aside {
 }
 
 /* forms */
-
+/*
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -209,9 +201,20 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
 input {
   height: auto !important;
 }
+
+*/
 
 #error_explanation {
   color: red;
@@ -229,15 +232,6 @@ input {
   }
 }
 
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
-}
-
 #session_remember_me {
   width: auto;
   margin-left: 0;
@@ -247,18 +241,6 @@ input {
 
 .dropdown-menu.active {
   display: block;
-}
-
-/* Users index */
-
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-  }
 }
 
 /* microposts */

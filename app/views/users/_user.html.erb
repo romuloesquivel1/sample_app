@@ -1,8 +1,11 @@
 <li>
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.name, user %>
+  <div>
+    <%= link_to "Following #{user.following.count}", following_user_path(user) %>
+    | <%= link_to "Followers #{user.followers.count}", followers_user_path(user) %>
+  </div>
   <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, data: { "turbo-method": :delete,
-                                          turbo_confirm: "You sure?" } %>
+    | <%= link_to 'delete', user, data: { 'turbo-method': :delete, turbo_confirm: 'Are you sure?' } %>
   <% end %>
 </li>

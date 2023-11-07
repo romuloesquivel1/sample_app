@@ -1,10 +1,36 @@
+<% isEdit = @micropost.persisted? %>
 <%= form_with(model: @micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+  <div class='field'>
+    <%= f.text_area :content, class: 'form-control', placeholder: 'Compose new micropost...' %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
-  <span class="image">
-    <%= f.file_field :image, accept: "image/jpeg,image/gig,image/png" %>
-  </span>
+
+  <div class='row my-1'>
+    <% if @micropost.image.attached? %>
+      <div class='col-md-6'>
+        <div class='image-preview'>
+            <%= image_tag @micropost.image.variant(resize_to_limit: [500, 500]) %>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class='image'>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+        </div>
+        <div class='remove-image'>
+          <div class='checkbox'>
+            <%= f.label :remove_image do %>
+              <%= f.check_box :remove_image %>
+              Remove image
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class='col-md-12'>
+        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit(isEdit ? 'Save changes' : 'Post', class: 'btn btn-primary') %>
 <% end %>

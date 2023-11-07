@@ -1,0 +1,28 @@
+<% if @microposts.any? %>
+  <h3>Microposts (<%= @microposts.count %>)</h3>
+
+  <div class='row'>
+    <div class='col-md-2'>
+      <%= select_tag :per_page, options_for_select([5, 10, 15, 20], @per_page), :onchange => "window.location.href = '?per_page=' + this.value;" %>
+    </div>
+    <div class='col-md-10'>
+      <%= will_paginate @microposts, class: 'custom-paging-users' %>
+    </div>
+  </div>
+
+  <ol class='microposts my-2'>
+    <%= render @microposts %>
+  </ol>
+
+  <div class='row'>
+    <div class='col-md-2'>
+      <%= select_tag :per_page, options_for_select([5, 10, 15, 20], @per_page), :onchange => "window.location.href = '?per_page=' + this.value;" %>
+    </div>
+    <div class='col-md-10'>
+      <%= will_paginate @microposts, class: 'custom-paging-users' %>
+    </div>
+  </div>
+
+<% else %>
+  <p class='mt-1'><%= @user.name %> has no microposts yet.</p>
+<% end %>

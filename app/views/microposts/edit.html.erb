@@ -1,0 +1,10 @@
+
+<h1>Edit post <%= @micropost.id %></h1>
+
+<p class='timestamp'>
+  Created at: <%= time_ago_in_words(@micropost.created_at) %> ago.
+  <br>
+  Updated at: <%= time_ago_in_words(@micropost.updated_at) %> ago.
+</p>
+
+<%= render 'shared/micropost_form' %>

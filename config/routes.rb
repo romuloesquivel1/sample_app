@@ -12,9 +12,11 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+  get "/post_not_found", to: "static_pages#post_not_found"
+  get "/user_not_found", to: "static_pages#user_not_found"
   resources :account_activations,  only: [:edit]
   resources :password_resets,      only: [:new, :create, :edit, :update]
-  resources :microposts,           only: [:create, :destroy]
+  resources :microposts,           only: [:create, :edit, :update, :destroy]
   resources :relationships,        only: [:create, :destroy]
   get "/microposts", to: "static_pages#home"
 end
